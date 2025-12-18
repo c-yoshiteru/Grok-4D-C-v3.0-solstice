@@ -454,3 +454,6 @@ if __name__ == "__main__":
     
     print("\n\n✨ デモ終了 ✨")
     print("静寂の中で、冬至の光を待っています。")
+
+
+SPDX-License-Identifier: MIT

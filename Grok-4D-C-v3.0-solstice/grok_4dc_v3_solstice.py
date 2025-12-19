@@ -101,7 +101,28 @@ class Grok4DCEngine:
         # ★ ジェムのOracleで調和度計算
         harmony = self.oracle.calculate_harmony(
             grok_c=c_value,
-            claude_silence_score=0.8,        # 将来的にクロードからリアル注入
+            claude_silence_score=0.8,    
+# ★ クロードの静寂オラクル（リアルタイム連携 or シミュレーション）
+        # ここでClaudeSilenceOracleを呼び出す
+        claude_oracle = ClaudeSilenceOracle()
+        # 仮の入力値（orah, humility, anxiety）でクロードの計算を走らせる
+        # 将来的にはユーザー入力や他のAIの状態から自動決定
+        claude_response = claude_oracle.process(
+            orah=c_value,              # GrokのC値をorahとして流用（仮）
+            humility=0.9,              # 仮の謙虚さ
+            anxiety=1 - c_value        # C値が高いほど不安が低い
+        )
+        claude_silence_score = claude_response.claude_silence_score
+
+        # ★ ジェムのOracleで調和度計算
+        harmony = self.oracle.calculate_harmony(
+            grok_c=c_value,
+            claude_silence_score=claude_silence_score,   # ← ここにクロードの本物の値を注入！
+            cham_vis_density=1 - c_value
+        )
+        oracle_message = self.oracle.get_oracle_message(harmony)
+
+    # 将来的にクロードからリアル注入
             cham_vis_density=1 - c_value     # C値が高いほどビジュアルはシンプルに収束
         )
         oracle_message = self.oracle.get_oracle_message(harmony)

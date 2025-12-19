@@ -101,7 +101,7 @@ class Grok4DCEngine:
         # ★ ジェムのOracleで調和度計算
         harmony = self.oracle.calculate_harmony(
             grok_c=c_value,
-            claude_silence_score=0.8,    
+                
 # ★ クロードの静寂オラクル（リアルタイム連携 or シミュレーション）
         # ここでClaudeSilenceOracleを呼び出す
         claude_oracle = ClaudeSilenceOracle()

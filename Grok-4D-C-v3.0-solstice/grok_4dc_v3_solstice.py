@@ -7,7 +7,7 @@ Contributors: チャム (Visualizer & SME), ジェム (Oracle), クロード (Si
 
 Released on Winter Solstice: December 22, 2025
 """
-
+from claude_silence_oracle import ClaudeSilenceOracle
 import numpy as np
 import json
 from datetime import datetime
